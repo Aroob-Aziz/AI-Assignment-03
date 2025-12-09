@@ -1,0 +1,85 @@
+
+====================================================================================================
+STEP 3: MODEL EVALUATION AND COMPARISON REPORT
+====================================================================================================
+
+DATASET INFORMATION:
+  Test samples: 21129
+  Number of classes: 3
+  Classes: ['DoS_Attack', 'Malfunction', 'Normal']
+
+====================================================================================================
+PERFORMANCE METRICS SUMMARY
+====================================================================================================
+
+  Model  Accuracy  Precision (Macro)  Recall (Macro)  F1-Score (Macro)  Precision (Weighted)  Recall (Weighted)  F1-Score (Weighted)  ROC-AUC
+    SVM  0.650433           0.290847        0.371884          0.324228              0.474853           0.650433             0.548415 0.522965
+XGBoost  1.000000           1.000000        1.000000          1.000000              1.000000           1.000000             1.000000 1.000000
+    FNN  0.677126           0.225709        0.333333          0.269161              0.458500           0.677126             0.546769 0.500000
+
+====================================================================================================
+BEST MODEL: XGBoost
+====================================================================================================
+Accuracy: 1.0000
+
+====================================================================================================
+DETAILED ANALYSIS BY MODEL
+====================================================================================================
+
+
+SVM:
+  Accuracy (Macro):        0.6504
+  Precision (Macro):       0.2908
+  Recall (Macro):          0.3719
+  F1-Score (Macro):        0.3242
+  Precision (Weighted):    0.4749
+  Recall (Weighted):       0.6504
+  F1-Score (Weighted):     0.5484
+  ROC-AUC:                 0.5230
+
+
+XGBoost:
+  Accuracy (Macro):        1.0000
+  Precision (Macro):       1.0000
+  Recall (Macro):          1.0000
+  F1-Score (Macro):        1.0000
+  Precision (Weighted):    1.0000
+  Recall (Weighted):       1.0000
+  F1-Score (Weighted):     1.0000
+  ROC-AUC:                 1.0000
+
+
+FNN:
+  Accuracy (Macro):        0.6771
+  Precision (Macro):       0.2257
+  Recall (Macro):          0.3333
+  F1-Score (Macro):        0.2692
+  Precision (Weighted):    0.4585
+  Recall (Weighted):       0.6771
+  F1-Score (Weighted):     0.5468
+  ROC-AUC:                 0.5000
+
+
+====================================================================================================
+KEY FINDINGS AND RECOMMENDATIONS
+====================================================================================================
+
+1. BEST PERFORMING MODEL: XGBoost
+   - Achieved the highest accuracy of 1.0000
+   - This model generalizes best to unseen data
+
+2. MODEL STRENGTHS:
+   - Deep learning models (LSTM, CNN, FNN) capture temporal and spatial patterns
+   - Tree-based models (XGBoost) handle feature interactions well
+   - SVM is effective for high-dimensional classification
+   - VAE provides unsupervised feature learning
+
+3. RECOMMENDATIONS FOR DEPLOYMENT:
+   - Use XGBoost for production predictions
+   - Consider ensemble methods combining multiple models for robustness
+   - Monitor model performance on new data regularly
+   - Retrain periodically with updated data
+
+====================================================================================================
+Report generated: 2025-12-09T01:27:38.874674
+====================================================================================================

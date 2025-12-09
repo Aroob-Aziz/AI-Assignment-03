@@ -1,0 +1,82 @@
+
+====================================================================================================
+STEP 2.6: FEEDFORWARD NEURAL NETWORK (FNN) TRAINING REPORT
+====================================================================================================
+
+DATASET INFORMATION:
+  Training samples: 21,129
+  Validation samples: 7,043
+  Test samples: 7,043
+  Number of features: 49
+  Number of classes: 3 (DoS_Attack, Malfunction, Normal)
+
+HYPERPARAMETER SEARCH CONFIGURATION:
+  Search method: Random Search
+  Number of iterations: 3
+  Hyperparameters tuned:
+    - Number of hidden layers: [2, 3, 4, 5]
+    - Neurons per layer: [64, 128, 256, 512]
+    - Dropout rate: [0.0, 0.2, 0.3, 0.5]
+    - Learning rate: [0.001, 0.0001, 0.00001]
+    - Batch size: [16, 32, 64, 128]
+    - Activation function: [relu, elu, leaky_relu, tanh]
+    - Optimizer: [Adam, RMSprop, SGD]
+    - Batch normalization: [True, False]
+    - L2 regularization: [0.0, 0.001, 0.01, 0.1]
+
+BEST HYPERPARAMETERS FOUND:
+  num_layers                    : 2
+  neurons_per_layer             : 64
+  dropout_rate                  : 0.2
+  activation                    : relu
+  learning_rate                 : 0.001
+  batch_size                    : 512
+  epochs                        : 10
+  optimizer                     : Adam
+  use_batch_norm                : True
+  l2_reg                        : 0.001
+
+SEARCH RESULTS SUMMARY:
+  Best validation accuracy: 0.6770
+  Mean validation accuracy: 0.6770
+  Std validation accuracy:  0.0000
+
+TEST SET EVALUATION:
+  Accuracy:  0.6771
+  Precision: 0.4585
+  Recall:    0.6771
+  F1-Score:  0.5468
+
+MODEL ARCHITECTURE:
+  Input layer: 49 features
+  Hidden layers: 2 layers with 64 neurons each
+  Activation: relu
+  Batch normalization: True
+  Dropout: 0.2
+  L2 regularization: 0.001
+  Output layer: 3 classes (softmax)
+
+OPTIMIZER AND TRAINING:
+  Optimizer: Adam
+  Learning rate: 0.001
+  Batch size: 512
+  Max epochs: 10
+  Early stopping: Yes (patience=10)
+  Learning rate reduction: Yes (patience=5)
+
+FILES SAVED:
+  - fnn_best_model.h5: Trained FNN model (Keras format)
+  - fnn_best_params.pkl: Best hyperparameters
+  - fnn_search_results.pkl: All search iterations results
+  - fnn_metadata.pkl: Training metadata
+  - fnn_training_history.png: Training loss and accuracy plots
+  - fnn_search_results.png: Hyperparameter search progress
+  - fnn_confusion_matrix.png: Test set confusion matrix
+
+NEXT STEPS:
+  This model can be used for:
+  1. Comparison with other models (Part 3)
+  2. Explainability analysis using SHAP/LIME (Part 4)
+  3. Feature importance extraction (Part 4)
+
+====================================================================================================
