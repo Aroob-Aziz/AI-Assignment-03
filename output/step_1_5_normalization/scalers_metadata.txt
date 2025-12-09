@@ -1,0 +1,26 @@
+
+MOTION_METRICS:
+  Scaler: StandardScaler
+  Features (2): gyro_magnitude, motion_activity_level
+  Rationale: Normally distributed motion features benefit from z-score normalization. Velocity and acceleration have no natural bounds.
+
+BATTERY_METRICS:
+  Scaler: RobustScaler
+  Features (5): battery_voltage, battery_percentage, battery_drain_rate, battery_change_rate, battery_voltage_rolling_std
+  Rationale: Battery metrics have outliers (sudden voltage drops, anomalous drain rates). RobustScaler uses median/IQR, insensitive to extremes.
+
+CONTROL_SIGNALS:
+  Scaler: RobustScaler
+  Features (6): rc_output_mean, rc_output_std, setpoint_raw-global_altitude, vfr_hud_throttle, vfr_hud_airspeed
+             ... and 1 more
+  Rationale: RC and control signals have outliers during anomalies/malfunctions. RobustScaler preserves signal while normalizing.
+
+QUATERNION_ORIENTATION:
+  Scaler: StandardScaler
+  Features (5): quaternion_magnitude, imu-data_orientation.x, imu-data_orientation.y, imu-data_orientation.z, imu-data_orientation.w
+  Rationale: Quaternion components are mathematically bounded (~1 for unit quaternion). StandardScaler normalizes variations.
+
+BOUNDED_FEATURES:
+  Scaler: MinMaxScaler
+  Features (3): throttle_altitude_ratio, setpoint_raw-global_latitude, setpoint_raw-global_longitude
+  Rationale: Position and ratio features have implicit bounds. MinMaxScaler preserves interpretability [0,1].
