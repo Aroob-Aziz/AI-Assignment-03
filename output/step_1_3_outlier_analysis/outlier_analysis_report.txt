@@ -1,0 +1,148 @@
+====================================================================================================
+STEP 1.3: OUTLIER DETECTION AND TREATMENT REPORT
+====================================================================================================
+
+Dataset: 35,215 rows × 48 columns
+Classes: DoS_Attack, Malfunction, Normal
+
+====================================================================================================
+OUTLIER DETECTION SUMMARY:
+====================================================================================================
+
+                                       column  n_outliers_iqr  pct_outliers_iqr  n_outliers_zscore  pct_outliers_zscore  lower_bound_iqr  upper_bound_iqr           mean      median        std
+                 setpoint_raw-global_latitude           12275         34.857305                  0             0.000000        33.637042        33.637140   3.363697e+01   33.637087   0.000235
+                 setpoint_raw-global_altitude            6791         19.284396               1298             3.685929         0.228000         5.436000   4.049258e+00    3.012000   3.392564
+                setpoint_raw-global_longitude            4139         11.753514                  0             0.000000        72.991055        72.991471   7.299129e+01   72.991262   0.000122
+                  imu-data_angular_velocity.z             582          1.652705                  5             0.236183        -0.255074         0.288232   6.810385e-02    0.000340   0.475562
+   global_position-local_twist.twist.linear.x             544          1.544796                 73             3.432064        -0.490000         0.470000  -5.250118e-02    0.000000   0.693702
+   global_position-local_twist.twist.linear.z             513          1.456766                 49             2.303714        -0.395000         0.285000  -1.292431e-02   -0.020000   0.384150
+   global_position-local_twist.twist.linear.y             501          1.422689                 71             3.338035        -0.525000         0.395000  -1.396803e-02    0.000000   0.770840
+                              battery_voltage             374          1.062047                 18             0.898652         0.001000         0.041000   3.041687e-02    0.020000   0.026246
+                            rc-out_channels_2             364          1.033650                  0             0.000000      1227.000000      2043.000000   1.554849e+03 1628.000000 276.489937
+                            rc-out_channels_3             361          1.025131                  0             0.000000      1267.000000      1971.000000   1.544053e+03 1629.000000 267.106633
+                            rc-out_channels_0             351          0.996734                  0             0.000000      1120.625000      1743.625000   1.385949e+03 1458.000000 192.780928
+                             vfr_hud_throttle             347          0.985376                  0             0.000000         0.075000         0.275000   1.521058e-01    0.180000   0.073124
+                                vfr_hud_climb             347          0.985376                 38             1.914358        -0.364147         0.487225   1.413204e-02    0.024418   0.400763
+   global_position-local_pose.pose.position.z             328          0.931421                 63             2.961918        -1.865250         6.296750   3.112079e+00    1.683000   3.785324
+                  imu-data_angular_velocity.y             303          0.860429                  9             0.425130        -0.225107         0.195796  -3.679505e-02   -0.000543   0.308432
+                  imu-data_angular_velocity.x             220          0.624734                 22             1.039206        -0.261735         0.264243   9.780635e-03   -0.000026   0.205001
+global_position-local_pose.pose.orientation.y             196          0.556581                 54             2.538787        -0.067045         0.089186  -1.050625e-02    0.008512   0.156389
+                       imu-data_orientation.y             192          0.545222                 54             2.550779        -0.067544         0.089875  -1.059403e-02    0.008512   0.156750
+                          vfr_hud_groundspeed             173          0.491268                  0             0.000000        -1.228190         2.216669   6.618528e-01    0.257758   0.851422
+                             vfr_hud_airspeed             133          0.377680                  0             0.000000        -1.359571         2.594130   7.722806e-01    0.423676   0.852808
+              global_position-global_altitude             132          0.374840                  0             0.000000       490.073504       517.726060   5.057381e+02  506.046029   6.014677
+                             vfr_hud_altitude             120          0.340764                  0             0.000000       536.599945       564.920013   5.529147e+02  553.059998   5.967780
+global_position-local_pose.pose.orientation.x             114          0.323726                 41             1.927598        -0.059963         0.067560   4.988243e-04   -0.004255   0.031428
+                       imu-data_orientation.x             114          0.323726                 41             1.936703        -0.060204         0.067705   5.154717e-04   -0.004249   0.031491
+   global_position-local_pose.pose.position.x             110          0.312367                  0             0.000000        -9.695863         7.747408 -2.614010e+177   -1.753610        inf
+                          state_system_status              44          0.124947                  0             0.000000         5.000000         5.000000   4.668161e+00    5.000000   0.702133
+                                  state_armed              42          0.119267                  0             0.000000         1.000000         1.000000   8.116592e-01    1.000000   0.391864
+   global_position-local_pose.pose.position.y               1          0.002840                  0             0.000000       -16.042484        25.554277  7.710845e+214    7.576159        inf
+                            rc-out_channels_1               1          0.002840                  0             0.000000       954.000000      1858.000000   1.372077e+03 1441.500000 196.504216
+                          battery_temperature               0          0.000000                  0             0.000000         0.000000         0.000000   0.000000e+00    0.000000   0.000000
+                           battery_percentage               0          0.000000                  0             0.000000        -0.010000        -0.010000  -1.000000e-02   -0.010000   0.000000
+global_position-local_pose.pose.orientation.z               0          0.000000                  0             0.000000        -2.311507         1.291285  -5.507666e-01   -0.902122   0.507056
+                              battery_current               0          0.000000                  0             0.000000         0.010000         0.010000   1.000000e-02    0.010000   0.000000
+                       imu-data_orientation.z               0          0.000000                  0             0.000000        -2.313216         1.294323  -5.499672e-01   -0.902054   0.507517
+                       imu-data_orientation.w               0          0.000000                  0             0.000000        -2.773863         2.108214  -2.832059e-01   -0.260977   0.578250
+                              vfr_hud_heading               0          0.000000                  0             0.000000      -128.000000       480.000000   1.924796e+02  220.000000  90.493309
+                            rc-out_channels_4               0          0.000000                  0             0.000000         0.000000         0.000000   0.000000e+00    0.000000   0.000000
+             global_position-global_longitude               0          0.000000                  0             0.000000        72.990838        72.991844   7.299133e+01   72.991311   0.000128
+              global_position-global_latitude               0          0.000000                  0             0.000000        33.635744        33.637918   3.363688e+01   33.637082   0.000270
+          setpoint_raw-target_global_latitude               0          0.000000                  0             0.000000        33.635703        33.637966   3.363695e+01   33.637090   0.000261
+          global_position-raw-satellites_data               0          0.000000                  0             0.000000        10.500000        14.500000   1.274248e+01   13.000000   0.437370
+         setpoint_raw-target_global_longitude               0          0.000000                  0             0.000000        72.990872        72.991778   7.299129e+01   72.991298   0.000126
+          setpoint_raw-target_global_altitude               0          0.000000                  0             0.000000       532.524963       573.605042   5.546410e+02  553.859985   6.217876
+                              state_connected               0          0.000000                  0             0.000000         1.000000         1.000000   1.000000e+00    1.000000   0.000000
+               setpoint_raw-target_global_yaw               0          0.000000                  0             0.000000         1.570796         1.570796   1.570796e+00    1.570796   0.000000
+                                 state_guided               0          0.000000                  0             0.000000        -1.500000         2.500000   7.219731e-01    1.000000   0.449035
+                           state_manual_input               0          0.000000                  0             0.000000         1.000000         1.000000   1.000000e+00    1.000000   0.000000
+
+====================================================================================================
+OUTLIER TREATMENT STRATEGY:
+====================================================================================================
+
+METHOD 1: IQR-Based Capping (Recommended)
+----------------------------------------------------------------------------------------------------
+
+Approach:
+  - For each numeric feature, calculate Q1, Q3, and IQR = Q3 - Q1
+  - Define outlier bounds: Lower = Q1 - 1.5*IQR, Upper = Q3 + 1.5*IQR
+  - Cap values: Replace values < Lower with Lower, values > Upper with Upper
+  - This preserves all samples while reducing extreme values
+
+Advantages:
+  + Preserves sample count (no data loss)
+  + Robust to outlier magnitude
+  + Maintains temporal/sequential order if present
+  + Retains domain-relevant information in boundary regions
+
+Implementation:
+  - Apply per-feature capping based on IQR bounds
+  - Optional: Apply per-class to preserve class-specific characteristics
+
+Decision: USE IQR-BASED CAPPING
+Rationale: Telemetry data outliers may represent transient system states or anomalies
+           (e.g., sudden movements, DoS attacks). Capping preserves these signals
+           while preventing extreme values from dominating scaled features.
+
+====================================================================================================
+FEATURES WITH SIGNIFICANT OUTLIERS (>5% by IQR):
+====================================================================================================
+
+setpoint_raw-global_latitude                  | IQR: 34.86% (12275) | Z-score:  0.00%
+setpoint_raw-global_altitude                  | IQR: 19.28% ( 6791) | Z-score:  3.69%
+setpoint_raw-global_longitude                 | IQR: 11.75% ( 4139) | Z-score:  0.00%
+
+====================================================================================================
+TREATMENT PROCEDURE:
+====================================================================================================
+
+1. For each numeric column:
+   - Calculate Q1, Q3, IQR
+   - Set lower_bound = Q1 - 1.5 * IQR
+   - Set upper_bound = Q3 + 1.5 * IQR
+   - Cap: df[col] = df[col].clip(lower_bound, upper_bound)
+
+2. Expected outcome:
+   - Features affected: ~3 columns
+   - Samples affected: Varying (typically 1-10% per feature)
+   - Total data loss: 0 rows (capping preserves all samples)
+
+3. Post-treatment validation:
+   - Check for remaining extreme values
+   - Verify class-specific distributions
+   - Confirm numeric ranges are reasonable
+
+====================================================================================================
+OUTLIER CHARACTERISTICS BY CLASS:
+====================================================================================================
+
+
+CLASS: DOS_ATTACK
+----------------------------------------------------------------------------------------------------
+  Total outlier instances (IQR): 1,184 / 112,001 (1.06%)
+
+
+CLASS: MALFUNCTION
+----------------------------------------------------------------------------------------------------
+  Total outlier instances (IQR): 4,121 / 422,530 (0.98%)
+
+
+CLASS: NORMAL
+----------------------------------------------------------------------------------------------------
+  Total outlier instances (IQR): 5,191 / 1,120,574 (0.46%)
+
+====================================================================================================
+CONCLUSION:
+====================================================================================================
+
+Outlier Treatment: IQR-based capping (no removal)
+
+Reasoning:
+  1. Preserves all samples and temporal sequences
+  2. Outliers in telemetry data are meaningful (system events/anomalies)
+  3. Capping reduces extreme values without losing information
+  4. Prepares data for scaling without unbounded values
+
+====================================================================================================

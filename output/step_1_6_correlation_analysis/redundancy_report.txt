@@ -1,0 +1,115 @@
+========================================================================================================================
+MULTICOLLINEARITY AND REDUNDANCY ANALYSIS
+========================================================================================================================
+
+Threshold for high correlation: >0.95
+Total highly correlated pairs found: 9
+Features recommended for removal: 8
+
+========================================================================================================================
+HIGHLY CORRELATED FEATURE PAIRS (correlation >= 0.95):
+========================================================================================================================
+
+gyro_magnitude                           <--> motion_activity_level                   
+  Correlation:  1.0000 (absolute: 1.0000)
+
+global_position-local_pose.pose.orientation.y <--> imu-data_orientation.y                  
+  Correlation:  0.9954 (absolute: 0.9954)
+
+rc_output_mean                           <--> rc_output_std                           
+  Correlation:  0.9913 (absolute: 0.9913)
+
+global_position-local_pose.pose.orientation.z <--> imu-data_orientation.z                  
+  Correlation:  0.9738 (absolute: 0.9738)
+
+vfr_hud_airspeed                         <--> vfr_hud_groundspeed                     
+  Correlation:  0.9694 (absolute: 0.9694)
+
+setpoint_raw-global_altitude             <--> throttle_altitude_ratio                 
+  Correlation:  0.9675 (absolute: 0.9675)
+
+rc-out_channels_3                        <--> rc_output_std                           
+  Correlation:  0.9670 (absolute: 0.9670)
+
+rc-out_channels_2                        <--> rc_output_std                           
+  Correlation:  0.9583 (absolute: 0.9583)
+
+rc-out_channels_3                        <--> rc_output_mean                          
+  Correlation:  0.9505 (absolute: 0.9505)
+
+========================================================================================================================
+REDUNDANCY RESOLUTION:
+========================================================================================================================
+
+Decision logic: For each correlated pair, keep the feature with lower average correlation
+to other features (less redundant with dataset). This preserves diversity.
+
+Pair: gyro_magnitude <-> motion_activity_level
+  Correlation: 1.0000
+  Keep: gyro_magnitude
+  Drop: motion_activity_level
+  Rationale: Dropped motion_activity_level (avg_corr=0.169) in favor of gyro_magnitude
+
+Pair: global_position-local_pose.pose.orientation.y <-> imu-data_orientation.y
+  Correlation: 0.9954
+  Keep: imu-data_orientation.y
+  Drop: global_position-local_pose.pose.orientation.y
+  Rationale: Dropped global_position-local_pose.pose.orientation.y (avg_corr=0.119) in favor of imu-data_orientation.y
+
+Pair: rc_output_mean <-> rc_output_std
+  Correlation: 0.9913
+  Keep: rc_output_std
+  Drop: rc_output_mean
+  Rationale: Dropped rc_output_mean (avg_corr=0.225) in favor of rc_output_std
+
+Pair: global_position-local_pose.pose.orientation.z <-> imu-data_orientation.z
+  Correlation: 0.9738
+  Keep: imu-data_orientation.z
+  Drop: global_position-local_pose.pose.orientation.z
+  Rationale: Dropped global_position-local_pose.pose.orientation.z (avg_corr=0.144) in favor of imu-data_orientation.z
+
+Pair: vfr_hud_airspeed <-> vfr_hud_groundspeed
+  Correlation: 0.9694
+  Keep: vfr_hud_airspeed
+  Drop: vfr_hud_groundspeed
+  Rationale: Dropped vfr_hud_groundspeed (avg_corr=0.175) in favor of vfr_hud_airspeed
+
+Pair: setpoint_raw-global_altitude <-> throttle_altitude_ratio
+  Correlation: 0.9675
+  Keep: throttle_altitude_ratio
+  Drop: setpoint_raw-global_altitude
+  Rationale: Dropped setpoint_raw-global_altitude (avg_corr=0.119) in favor of throttle_altitude_ratio
+
+Pair: rc-out_channels_3 <-> rc_output_std
+  Correlation: 0.9670
+  Keep: rc_output_std
+  Drop: rc-out_channels_3
+  Rationale: Dropped rc-out_channels_3 (avg_corr=0.225) in favor of rc_output_std
+
+Pair: rc-out_channels_2 <-> rc_output_std
+  Correlation: 0.9583
+  Keep: rc_output_std
+  Drop: rc-out_channels_2
+  Rationale: Dropped rc-out_channels_2 (avg_corr=0.228) in favor of rc_output_std
+
+========================================================================================================================
+FEATURES RECOMMENDED FOR REMOVAL:
+========================================================================================================================
+
+  - global_position-local_pose.pose.orientation.y
+  - global_position-local_pose.pose.orientation.z
+  - motion_activity_level
+  - rc-out_channels_2
+  - rc-out_channels_3
+  - rc_output_mean
+  - setpoint_raw-global_altitude
+  - vfr_hud_groundspeed
+
+========================================================================================================================
+RECOMMENDATION:
+========================================================================================================================
+
+✓ Remove 8 redundant features in Step 1.7
+  This improves model efficiency and interpretability without losing information.
+
+========================================================================================================================

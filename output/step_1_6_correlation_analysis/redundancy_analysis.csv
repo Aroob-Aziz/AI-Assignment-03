@@ -1,0 +1,9 @@
+pair,correlation,keep,drop,rationale
+gyro_magnitude <-> motion_activity_level,1.0,gyro_magnitude,motion_activity_level,Dropped motion_activity_level (avg_corr=0.169) in favor of gyro_magnitude
+global_position-local_pose.pose.orientation.y <-> imu-data_orientation.y,0.9954443993463346,imu-data_orientation.y,global_position-local_pose.pose.orientation.y,Dropped global_position-local_pose.pose.orientation.y (avg_corr=0.119) in favor of imu-data_orientation.y
+rc_output_mean <-> rc_output_std,0.991261270929537,rc_output_std,rc_output_mean,Dropped rc_output_mean (avg_corr=0.225) in favor of rc_output_std
+global_position-local_pose.pose.orientation.z <-> imu-data_orientation.z,0.973785504943597,imu-data_orientation.z,global_position-local_pose.pose.orientation.z,Dropped global_position-local_pose.pose.orientation.z (avg_corr=0.144) in favor of imu-data_orientation.z
+vfr_hud_airspeed <-> vfr_hud_groundspeed,0.9694376108948715,vfr_hud_airspeed,vfr_hud_groundspeed,Dropped vfr_hud_groundspeed (avg_corr=0.175) in favor of vfr_hud_airspeed
+setpoint_raw-global_altitude <-> throttle_altitude_ratio,0.9675119274961077,throttle_altitude_ratio,setpoint_raw-global_altitude,Dropped setpoint_raw-global_altitude (avg_corr=0.119) in favor of throttle_altitude_ratio
+rc-out_channels_3 <-> rc_output_std,0.9670225432744494,rc_output_std,rc-out_channels_3,Dropped rc-out_channels_3 (avg_corr=0.225) in favor of rc_output_std
+rc-out_channels_2 <-> rc_output_std,0.9583325011987466,rc_output_std,rc-out_channels_2,Dropped rc-out_channels_2 (avg_corr=0.228) in favor of rc_output_std
