@@ -1,0 +1,94 @@
+========================================================================================================================
+STEP 1.6: FEATURE CORRELATION ANALYSIS REPORT
+========================================================================================================================
+
+Pearson Correlation Matrix: (56, 56)
+Total numeric features: 56
+
+========================================================================================================================
+CORRELATION ANALYSIS SUMMARY:
+========================================================================================================================
+
+Pearson Correlation (Linear Relationships):
+  - Measures linear dependency between features
+  - Range: [-1, 1] where ±1 indicates perfect correlation
+
+Spearman Correlation (Monotonic Relationships):
+  - Measures monotonic (rank-based) relationships
+  - More robust to non-linear monotonic patterns
+
+========================================================================================================================
+TOP 15 FEATURES BY CORRELATION WITH TARGET CLASS:
+========================================================================================================================
+
+setpoint_raw-global_longitude            | Correlation: -0.4421 | P-value: 0.00e+00
+setpoint_raw-global_altitude             | Correlation:  0.2976 | P-value: 0.00e+00
+throttle_altitude_ratio                  | Correlation:  0.2808 | P-value: 0.00e+00
+setpoint_raw-global_latitude             | Correlation:  0.1609 | P-value: 8.47e-203
+setpoint_raw-target_global_longitude     | Correlation: -0.1508 | P-value: 2.80e-178
+global_position-global_longitude         | Correlation: -0.1385 | P-value: 2.61e-150
+vfr_hud_altitude                         | Correlation:  0.1354 | P-value: 1.11e-143
+setpoint_raw-target_global_altitude      | Correlation:  0.1348 | P-value: 1.66e-142
+global_position-global_altitude          | Correlation:  0.1262 | P-value: 6.07e-125
+setpoint_raw-target_global_latitude      | Correlation:  0.1148 | P-value: 1.09e-103
+global_position-raw-satellites_data      | Correlation:  0.1074 | P-value: 7.23e-91
+global_position-local_pose.pose.position.z | Correlation:  0.1045 | P-value: 3.92e-86
+global_position-global_latitude          | Correlation:  0.0997 | P-value: 2.04e-78
+imu-data_orientation.w                   | Correlation: -0.0945 | P-value: 1.30e-70
+vfr_hud_airspeed                         | Correlation:  0.0840 | P-value: 3.69e-56
+
+========================================================================================================================
+FEATURE REDUNDANCY ANALYSIS:
+========================================================================================================================
+
+High correlation threshold: 0.95
+Total feature pairs with correlation >= 0.95: 8
+Recommended features to remove: 8
+
+Redundant feature pairs:
+  gyro_magnitude <-> motion_activity_level: corr = 1.0000
+    Keep gyro_magnitude, drop motion_activity_level
+  global_position-local_pose.pose.orientation.y <-> imu-data_orientation.y: corr = 0.9954
+    Keep imu-data_orientation.y, drop global_position-local_pose.pose.orientation.y
+  rc_output_mean <-> rc_output_std: corr = 0.9913
+    Keep rc_output_std, drop rc_output_mean
+  global_position-local_pose.pose.orientation.z <-> imu-data_orientation.z: corr = 0.9738
+    Keep imu-data_orientation.z, drop global_position-local_pose.pose.orientation.z
+  vfr_hud_airspeed <-> vfr_hud_groundspeed: corr = 0.9694
+    Keep vfr_hud_airspeed, drop vfr_hud_groundspeed
+  setpoint_raw-global_altitude <-> throttle_altitude_ratio: corr = 0.9675
+    Keep throttle_altitude_ratio, drop setpoint_raw-global_altitude
+  rc-out_channels_3 <-> rc_output_std: corr = 0.9670
+    Keep rc_output_std, drop rc-out_channels_3
+  rc-out_channels_2 <-> rc_output_std: corr = 0.9583
+    Keep rc_output_std, drop rc-out_channels_2
+
+========================================================================================================================
+INTERPRETATION GUIDELINES:
+========================================================================================================================
+
+1. FEATURE-CLASS CORRELATION:
+   - Features with |correlation| > 0.3: Moderate discriminative power
+   - Features with |correlation| > 0.5: Strong relationship with class
+   - Low correlation features may still be valuable via interactions
+
+2. FEATURE-FEATURE CORRELATION:
+   - Correlation > 0.95: Highly redundant (candidate for removal)
+   - Correlation 0.7-0.95: Strong dependency (consider domain meaning)
+   - Correlation < 0.7: Good diversity (retain for coverage)
+
+3. MULTICOLLINEARITY IMPACT:
+   - Affects: Linear models (SVM), logistic regression, neural networks
+   - Less impact: Tree-based models (XGBoost), random forests
+   - Solution: Remove redundant features or apply dimensionality reduction (PCA)
+
+========================================================================================================================
+DATA QUALITY INSIGHTS:
+========================================================================================================================
+
+✓ Correlation patterns reveal feature relationships
+✓ High class correlations identify predictive features
+✓ Redundancy detection prevents overfitting from repeated information
+✓ Domain knowledge should validate removal recommendations
+
+========================================================================================================================

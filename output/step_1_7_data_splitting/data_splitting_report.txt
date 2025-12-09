@@ -1,0 +1,75 @@
+
+========================================================================================================================
+STEP 1.7: DATA SPLITTING REPORT
+========================================================================================================================
+
+Original dataset: 35,215 rows
+Features removed (redundant): 8
+motion_activity_level, global_position-local_pose.pose.orientation.y, global_position-local_pose.pose.orientation.z, rc_output_mean, rc-out_channels_2, rc-out_channels_3, setpoint_raw-global_altitude, vfr_hud_groundspeed
+
+========================================================================================================================
+SPLIT CONFIGURATION:
+========================================================================================================================
+
+Split Ratios (60-20-20 Stratified Split):
+  - Training set:   60% (21,129 rows)
+  - Validation set: 20% (7,043 rows)
+  - Test set:       20% (7,043 rows)
+  - Total:         100% (35,215 rows)
+
+Stratification Method: Stratified k-fold (preserves class distribution)
+  - Ensures each split maintains similar class proportions
+  - Critical for imbalanced datasets (Normal: 67.7%, Malfunction: 25.5%, DoS: 6.8%)
+  - Minority classes (DoS_Attack) well-represented in all splits
+
+Random Seed: 42 (for reproducibility)
+
+========================================================================================================================
+CLASS DISTRIBUTION ANALYSIS:
+========================================================================================================================
+
+Training Set (21,129 rows):
+  DoS_Attack          :  1,430 (  6.8%)
+  Malfunction         :  5,394 ( 25.5%)
+  Normal              : 14,305 ( 67.7%)
+
+Validation Set (7,043 rows):
+  DoS_Attack          :    477 (  6.8%)
+  Malfunction         :  1,798 ( 25.5%)
+  Normal              :  4,768 ( 67.7%)
+
+Test Set (7,043 rows):
+  DoS_Attack          :    476 (  6.8%)
+  Malfunction         :  1,798 ( 25.5%)
+  Normal              :  4,769 ( 67.7%)
+
+========================================================================================================================
+STRATIFICATION QUALITY:
+========================================================================================================================
+
+Stratification ensures that each split maintains class balance from original dataset.
+This is critical for imbalanced multi-class problems.
+
+Quality metrics show minimal deviation (<1%) from original proportions across all splits.
+
+========================================================================================================================
+USE CASES FOR EACH SPLIT:
+========================================================================================================================
+
+Training Set (60%):
+  - Used to train all 6 models (LSTM, CNN, SVM, XGBoost, VAE, FNN)
+  - Largest split provides sufficient learning signal
+  
+Validation Set (20%):
+  - Used for hyperparameter tuning and early stopping
+  - Monitor model performance during training
+  - Select best hyperparameters
+  
+Test Set (20%):
+  - Final unbiased evaluation of model performance
+  - Held out completely during training
+  - Used for final model comparison
+
+========================================================================================================================
+PREPROCESSING COMPLETE - READY FOR PART 2: MODEL TRAINING
+========================================================================================================================
