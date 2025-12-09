@@ -3,7 +3,7 @@
 **Student:** Aroob Aziz  
 **Roll Number:** 25K-7606  
 **Course:** Hands-on Machine Learning - Assignment 3  
-**Repository:** https://github.com/Programmer-4-life/ML-Hands-on-Assign-3
+**Repository:** https://github.com/Aroob-Aziz/AI-Assignment-03.git
 
 ---
 
