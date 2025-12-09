@@ -1,0 +1,59 @@
+
+====================================================================================================
+STEP 2.2: 1D-CNN MODEL TRAINING REPORT
+====================================================================================================
+
+DATASET INFORMATION:
+  Train sequences: 21,120
+  Val sequences:   7,034
+  Test sequences:  7,034
+  Sequence length: 10
+  Number of features: 49
+  Number of classes: 3 (DoS_Attack, Malfunction, Normal)
+
+HYPERPARAMETER SEARCH CONFIGURATION:
+  Search method: Random Search
+  Number of iterations: 3
+  Hyperparameters tuned:
+    - Number of convolutional layers: [1, 2, 3, 4]
+    - Number of filters: [32, 64, 128, 256]
+    - Kernel size: [3, 5, 7, 9]
+    - Pooling size: [2, 3, 4]
+    - Dropout rate: [0.0, 0.2, 0.3, 0.5]
+    - Learning rate: [0.001, 0.0001]
+    - Batch size: [16, 32, 64]
+    - Activation function: [relu, elu]
+    - Dense layer units: [64, 128, 256]
+
+BEST HYPERPARAMETERS FOUND:
+  num_conv_layers               : 1
+  num_filters                   : 32
+  kernel_size                   : 3
+  pool_size                     : 2
+  dropout_rate                  : 0.1
+  activation                    : relu
+  learning_rate                 : 0.001
+  batch_size                    : 512
+  epochs                        : 10
+  dense_units                   : 64
+
+SEARCH RESULTS SUMMARY:
+  Best validation accuracy: 0.6769
+  Mean validation accuracy: 0.4738
+  Std validation accuracy:  0.2872
+
+TEST SET EVALUATION:
+  Accuracy:  0.6769
+  Precision: 0.4581
+  Recall:    0.6769
+  F1-Score:  0.5464
+
+FILES SAVED:
+  - cnn_best_model.h5
+  - cnn_best_params.pkl
+  - cnn_search_results.pkl
+  - cnn_metadata.pkl
+  - cnn_training_history.png
+  - cnn_search_results.png
+
+====================================================================================================

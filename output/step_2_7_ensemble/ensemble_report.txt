@@ -1,0 +1,64 @@
+
+================================================================================
+ENSEMBLE METHODS - ANALYSIS REPORT
+================================================================================
+
+Project: Drone Telemetry Anomaly Detection - Bonus: Ensemble Methods
+Author: Muhammad Abdullah
+Date: December 2025
+
+================================================================================
+1. EXECUTIVE SUMMARY
+================================================================================
+
+This analysis implements and compares five ensemble techniques to combine
+trained models for improved prediction accuracy.
+
+================================================================================
+2. ENSEMBLE METHODS IMPLEMENTED
+================================================================================
+
+1. HARD VOTING: Majority voting on class predictions
+2. SOFT VOTING: Average predicted probabilities
+3. STACKING: Meta-learner trained on base model predictions
+4. WEIGHTED ENSEMBLE: Weighted average by individual accuracy
+5. MAJORITY VOTING: Simple consensus
+
+================================================================================
+3. RESULTS
+================================================================================
+
+
+Weighted Ensemble:
+  Accuracy:  0.6771
+  Precision: 0.4585
+  Recall:    0.6771
+  F1-Score:  0.5468
+
+================================================================================
+4. BEST PERFORMING ENSEMBLE
+================================================================================
+
+Model: Weighted Ensemble
+Accuracy: 0.6771
+
+================================================================================
+5. KEY INSIGHTS
+================================================================================
+
+- Ensemble methods combine diverse model predictions
+- Voting mechanisms provide robust consensus predictions
+- Stacking can learn optimal model combination
+- Weighted ensembles favor better-performing models
+- Multiple algorithms increase diversity and robustness
+
+================================================================================
+6. CONCLUSION
+================================================================================
+
+Ensemble methods successfully leverage multiple models to improve predictions.
+The Weighted Ensemble achieved 0.6771 accuracy.
+
+All outputs saved to: E:\00. Master's in AI\Sem 1\AI\Assignments\Assign 3\Hand on ML - Assignemnt\output\step_2_7_ensemble
+
+================================================================================

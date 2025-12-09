@@ -1,0 +1,84 @@
+
+====================================================================================================
+STEP 2.1: LSTM MODEL TRAINING REPORT
+====================================================================================================
+
+DATASET INFORMATION:
+  Train sequences: 21,120 ((10, 49) per sequence)
+  Val sequences:   7,034
+  Test sequences:  7,034
+  Sequence length: 10
+  Number of features: 49
+  Number of classes: 3 (DoS_Attack, Malfunction, Normal)
+
+HYPERPARAMETER SEARCH CONFIGURATION:
+  Search method: Random Search
+  Number of iterations: 1
+  Hyperparameters tuned:
+    - Number of LSTM layers: [1, 2, 3]
+    - Number of units: [32, 64, 128, 256]
+    - Dropout rate: [0.0, 0.1, 0.2, 0.3, 0.5]
+    - Activation: [tanh, relu, sigmoid]
+    - Learning rate: [0.001, 0.0001, 0.00001]
+    - Batch size: [16, 32, 64, 128]
+    - Epochs: [50, 100, 150, 200]
+    - Optimizer: [Adam, RMSprop, SGD]
+    - Bidirectional: [True, False]
+
+BEST HYPERPARAMETERS FOUND:
+  num_lstm_layers               : 2
+  num_units                     : 128
+  dropout_rate                  : 0.2
+  activation                    : relu
+  learning_rate                 : 0.001
+  batch_size                    : 64
+  epochs                        : 5
+  optimizer                     : Adam
+  bidirectional                 : True
+  l2_reg                        : 0.0
+  use_batch_norm                : False
+
+SEARCH RESULTS SUMMARY:
+  Best validation accuracy: 0.6769
+  Mean validation accuracy: 0.6769
+  Std validation accuracy:  0.0000
+  Min validation accuracy:  0.6769
+
+TEST SET EVALUATION:
+  Accuracy:  0.6769
+  Precision: 0.4581
+  Recall:    0.6769
+  F1-Score:  0.5464
+
+MODEL ARCHITECTURE:
+  - Input: 10 time steps × 49 features
+  - 2 LSTM layer(s) with 128 units
+  - Bidirectional: True
+  - Activation: relu
+  - Dropout: 0.2
+  - Output: 3 classes (softmax)
+
+TRAINING CONFIGURATION:
+  - Optimizer: Adam
+  - Learning rate: 0.001
+  - Batch size: 64
+  - Max epochs: 5
+  - Early stopping: Yes (patience=10)
+  - Learning rate reduction: Yes (patience=5)
+
+FILES SAVED:
+  - lstm_best_model.h5: Trained LSTM model (Keras format)
+  - lstm_best_params.pkl: Best hyperparameters
+  - lstm_search_results.pkl: All search iterations results
+  - lstm_metadata.pkl: Training metadata
+  - lstm_training_history.png: Training loss and accuracy plots
+  - lstm_search_results.png: Hyperparameter search progress
+
+NEXT STEPS:
+  This model can now be used for:
+  1. Making predictions on new data
+  2. Feature extraction from latent representations
+  3. Comparison with other models in Part 3
+  4. Explainability analysis in Part 4
+
+====================================================================================================
