@@ -1,0 +1,64 @@
+
+====================================================================================================
+STEP 2.5: VARIATIONAL AUTOENCODER (VAE) TRAINING REPORT
+====================================================================================================
+
+DATASET INFORMATION:
+  Training samples: 21,129
+  Validation samples: 7,043
+  Test samples: 7,043
+  Number of features: 49
+  Number of classes: 3 (DoS_Attack, Malfunction, Normal)
+
+HYPERPARAMETER SEARCH CONFIGURATION:
+  Search method: Random Search
+  Number of iterations: 5
+  Hyperparameters tuned:
+    - Latent dimension: [8, 16, 32, 64]
+    - Encoder layers: [[256, 128], [512, 256, 128], [1024, 512, 256]]
+    - Decoder layers: [[128, 256], [128, 256, 512], [256, 512, 1024]]
+    - Learning rate: [0.001, 0.0001, 0.00001]
+    - Batch size: [32, 64, 128]
+    - Beta (KL weight): [0.5, 1.0, 2.0, 4.0]
+    - Activation: [relu, elu, leaky_relu]
+    - Epochs: [100, 200, 300]
+
+BEST HYPERPARAMETERS FOUND:
+  latent_dim                    : 32
+  encoder_units                 : [256, 128]
+  decoder_units                 : [128, 256]
+  learning_rate                 : 0.001
+  batch_size                    : 512
+  beta                          : 1.0
+  epochs                        : 15
+
+SEARCH RESULTS SUMMARY:
+  Best validation loss: 0.004772
+  Mean validation loss: 0.004988
+  Std validation loss:  0.000234
+
+TEST SET EVALUATION:
+  Reconstruction MSE: 0.005648
+
+VAE ARCHITECTURE:
+  Input dimension: 49
+  Latent dimension: 32
+  Encoder units: [256, 128]
+  Decoder units: [128, 256]
+  Activation: relu
+  Beta (KL divergence weight): 1.0
+
+USE CASES:
+  1. Anomaly detection: Reconstruction error threshold
+  2. Data generation: Sample from latent space
+  3. Dimensionality reduction: Use latent representations
+  4. Feature extraction: Use encoder for downstream tasks
+
+FILES SAVED:
+  - vae_best_model.h5: Trained VAE model
+  - vae_best_params.pkl: Best hyperparameters
+  - vae_search_results.pkl: All search iterations
+  - vae_metadata.pkl: Training metadata
+  - vae_search_results.png: Hyperparameter search visualization
+
+====================================================================================================

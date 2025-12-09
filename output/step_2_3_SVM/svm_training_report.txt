@@ -1,0 +1,59 @@
+
+====================================================================================================
+STEP 2.3: SUPPORT VECTOR MACHINE (SVM) TRAINING REPORT
+====================================================================================================
+
+DATASET INFORMATION:
+  Training samples: 21,129
+  Validation samples: 7,043
+  Test samples: 7,043
+  Number of features: 49
+  Number of classes: 3 (DoS_Attack, Malfunction, Normal)
+
+HYPERPARAMETER SEARCH CONFIGURATION:
+  Search method: Grid Search
+  Cross-validation folds: 2
+  Hyperparameters tuned:
+    - Kernel: [linear, rbf, poly, sigmoid]
+    - C (regularization): [0.1, 1, 10, 100, 1000]
+    - Gamma (for rbf/poly): [scale, auto, 0.001, 0.01, 0.1, 1]
+    - Degree (for poly): [2, 3, 4, 5]
+  Total combinations tested: 4
+  Search time: 25.82 seconds
+
+BEST HYPERPARAMETERS FOUND:
+  C                             : 10
+  kernel                        : linear
+
+SEARCH RESULTS SUMMARY:
+  Best cross-validation accuracy: 0.6254
+  Mean cross-validation accuracy: 0.4204
+  Std cross-validation accuracy:  0.1895
+
+TEST SET EVALUATION:
+  Accuracy:  0.6504
+  Precision: 0.4749
+  Recall:    0.6504
+  F1-Score:  0.5484
+
+MODEL DETAILS:
+  Algorithm: Support Vector Machine (SVM)
+  Kernel: linear
+  Regularization parameter C: 10
+  Features: All 49 preprocessed features (scaled)
+  Classes: 3-class multi-class problem
+
+ADVANTAGES OF SVM:
+  - Works well with scaled features
+  - Effective in high-dimensional spaces
+  - Memory efficient (uses subset of training points)
+  - Flexible kernel functions for non-linear problems
+
+FILES SAVED:
+  - svm_best_model.pkl: Trained SVM model
+  - svm_best_params.pkl: Best hyperparameters
+  - svm_cv_results.pkl: All cross-validation results
+  - svm_metadata.pkl: Training metadata
+  - svm_cv_results.png: Visualization of grid search results
+
+====================================================================================================
