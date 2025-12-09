@@ -1,7 +1,7 @@
 # Machine Learning Assignment: Explainable AI for Drone Telemetry Anomaly Detection
 
-**Student:** Muhammad Abdullah  
-**Roll Number:** 25K-7636  
+**Student:** Aroob Aziz  
+**Roll Number:** 25K-7606  
 **Course:** Hands-on Machine Learning - Assignment 3  
 **Repository:** https://github.com/Programmer-4-life/ML-Hands-on-Assign-3
 
