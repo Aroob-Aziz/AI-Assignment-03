@@ -548,7 +548,7 @@ def correlation_analysis(X, y):
 
 ## 🔗 GitHub Repository
 
-**Repository URL:** https://github.com/Programmer-4-life/ML-Hands-on-Assign-3
+**Repository URL:** https://github.com/Aroob-Aziz/AI-Assignment-03.git
 
 **Branch:** main
 
@@ -561,7 +561,7 @@ def correlation_analysis(X, y):
 
 **Clone command:**
 ```bash
-git clone https://github.com/Programmer-4-life/ML-Hands-on-Assign-3.git
+git clone https://github.com/Aroob-Aziz/AI-Assignment-03.git
 ```
 
 ---
@@ -651,7 +651,7 @@ probabilities = ensemble.predict_proba(X_test)
 
 ## 🔗 GitHub Repository
 
-**Repository URL:** https://github.com/Programmer-4-life/ML-Hands-on-Assign-3
+**Repository URL:** https://github.com/Aroob-Aziz/AI-Assignment-03.git
 
 **Branch:** main
 
@@ -664,7 +664,7 @@ probabilities = ensemble.predict_proba(X_test)
 
 **Clone command:**
 ```bash
-git clone https://github.com/Programmer-4-life/ML-Hands-on-Assign-3.git
+git clone https://github.com/Aroob-Aziz/AI-Assignment-03.git
 ```
 
 ---
@@ -707,8 +707,8 @@ Before submitting, ensure:
 
 ## 👤 Author Information
 
-**Name:** Muhammad Abdullah  
-**Roll Number:** 25K-7636  
+**Name:** Aroob Aziz
+**Roll Number:** 25K-7607
 **Course:** Hands-on Machine Learning  
 **Assignment:** #3 - Explainable AI for Robot Telemetry Data  
 **Date:** December 2025
@@ -730,6 +730,6 @@ This submission represents original work. All external resources, tutorials, and
 ## 📞 Support
 
 For questions about this project:
-- Email: 201617abdullah@gmail.com
-- GitHub Issues: https://github.com/Programmer-4-life/ML-Hands-on-Assign-3/issues
+- Email: aroobmemon@gmail.com
+- GitHub Issues: https://github.com/Aroob-Aziz/AI-Assignment-03.git
 
