@@ -1,0 +1,11 @@
+Group,Feature,Scaler,Orig Mean,Orig Std,Scaled Mean,Scaled Std,Orig Range,Scaled Range
+motion_metrics,gyro_magnitude,StandardScaler,0.3636,0.1194,-0.0000,1.0000,"[6.80e-05, 6.68e+00]","[-3.0459, 52.9568]"
+motion_metrics,motion_activity_level,StandardScaler,0.3636,0.1194,-0.0000,1.0000,"[6.80e-05, 6.68e+00]","[-3.0459, 52.9568]"
+battery_metrics,battery_voltage,RobustScaler,0.0304,0.0063,0.0000,0.0063,"[5.00e-03, 1.15e-01]","[-0.0254, 0.0846]"
+battery_metrics,battery_percentage,RobustScaler,-0.0100,0.0000,-0.0000,0.0000,"[-1.00e-02, -1.00e-02]","[-0.0000, 0.0000]"
+control_signals,rc_output_mean,RobustScaler,1171.3854,41.2534,-0.0000,41.2534,"[8.00e+02, 1.34e+03]","[-371.3854, 166.2146]"
+control_signals,rc_output_std,RobustScaler,666.6925,24.5871,0.0000,24.5871,"[4.47e+02, 7.97e+02]","[-219.4789, 130.0532]"
+quaternion_orientation,quaternion_magnitude,StandardScaler,1.0000,0.0000,-0.0000,1.0000,"[1.00e+00, 1.00e+00]","[-8.9865, 9.0072]"
+quaternion_orientation,imu-data_orientation.x,StandardScaler,0.0005,0.0077,0.0000,1.0000,"[-1.51e-01, 1.57e-01]","[-19.6301, 20.2933]"
+bounded_features,throttle_altitude_ratio,MinMaxScaler,2.6169,1.7965,0.1108,0.1335,"[1.12e+00, 1.46e+01]","[0.0000, 1.0000]"
+bounded_features,setpoint_raw-global_latitude,MinMaxScaler,33.6370,0.0002,0.6482,0.3433,"[3.36e+01, 3.36e+01]","[0.0000, 1.0000]"

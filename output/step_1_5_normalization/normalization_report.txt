@@ -1,0 +1,159 @@
+==================================================================================================================================
+STEP 1.5: DATA NORMALIZATION/STANDARDIZATION REPORT
+==================================================================================================================================
+
+Dataset: 35,215 rows × 58 columns
+Classes: DoS_Attack, Malfunction, Normal
+
+==================================================================================================================================
+SCALING STRATEGY OVERVIEW:
+==================================================================================================================================
+
+This step applies domain-aware feature scaling using three complementary techniques:
+
+1. StandardScaler (mean=0, std=1):
+   - Applied to: Motion metrics (velocity, acceleration, gyro magnitudes)
+   - Formula: z = (x - mean) / std
+   - Best for: Normally distributed, unbounded features, algorithms sensitive to scale (SVM, KNN)
+
+2. RobustScaler (median=0, IQR=1):
+   - Applied to: Battery metrics, control signals, RC outputs
+   - Formula: x' = (x - median) / IQR
+   - Best for: Features with outliers, preserves signal integrity
+
+3. MinMaxScaler (range [0,1]):
+   - Applied to: Bounded features (position, ratios, geographic coordinates)
+   - Formula: x' = (x - min) / (max - min)
+   - Best for: Interpretability, bounded ranges, gradient descent methods
+
+==================================================================================================================================
+DETAILED FEATURE GROUP ANALYSIS:
+==================================================================================================================================
+
+
+GROUP: MOTION_METRICS
+----------------------------------------------------------------------------------------------------------------------------------
+Scaler: StandardScaler
+Number of features: 2
+Rationale: Normally distributed motion features benefit from z-score normalization. Velocity and acceleration have no natural bounds.
+
+Features in this group:
+  gyro_magnitude                           | Original: μ=    0.3636, σ=    0.1194 | Scaled: μ= -0.0000, σ=  1.0000
+  motion_activity_level                    | Original: μ=    0.3636, σ=    0.1194 | Scaled: μ= -0.0000, σ=  1.0000
+
+GROUP: BATTERY_METRICS
+----------------------------------------------------------------------------------------------------------------------------------
+Scaler: RobustScaler
+Number of features: 5
+Rationale: Battery metrics have outliers (sudden voltage drops, anomalous drain rates). RobustScaler uses median/IQR, insensitive to extremes.
+
+Features in this group:
+  battery_voltage                          | Original: μ=    0.0304, σ=    0.0063 | Scaled: μ=  0.0000, σ=  0.0063
+  battery_percentage                       | Original: μ=   -0.0100, σ=    0.0000 | Scaled: μ= -0.0000, σ=  0.0000
+  battery_drain_rate                       | Original: μ=    0.0000, σ=    0.0000 | Scaled: μ=  0.0000, σ=  0.0000
+  battery_change_rate                      | Original: μ=    0.0000, σ=    0.0000 | Scaled: μ=  0.0000, σ=  0.0000
+  battery_voltage_rolling_std              | Original: μ=    0.0025, σ=    0.0003 | Scaled: μ=  0.0000, σ=  0.0003
+
+GROUP: CONTROL_SIGNALS
+----------------------------------------------------------------------------------------------------------------------------------
+Scaler: RobustScaler
+Number of features: 6
+Rationale: RC and control signals have outliers during anomalies/malfunctions. RobustScaler preserves signal while normalizing.
+
+Features in this group:
+  rc_output_mean                           | Original: μ= 1171.3854, σ=   41.2534 | Scaled: μ= -0.0000, σ= 41.2534
+  rc_output_std                            | Original: μ=  666.6925, σ=   24.5871 | Scaled: μ=  0.0000, σ= 24.5871
+  setpoint_raw-global_altitude             | Original: μ=    4.0493, σ=    3.3926 | Scaled: μ=  0.7967, σ=  2.6057
+  vfr_hud_throttle                         | Original: μ=    0.1521, σ=    0.0174 | Scaled: μ=  0.0000, σ=  0.0174
+  vfr_hud_airspeed                         | Original: μ=    0.7723, σ=    0.2024 | Scaled: μ=  0.0000, σ=  0.2024
+  vfr_hud_groundspeed                      | Original: μ=    0.6619, σ=    0.2021 | Scaled: μ= -0.0000, σ=  0.2021
+
+GROUP: QUATERNION_ORIENTATION
+----------------------------------------------------------------------------------------------------------------------------------
+Scaler: StandardScaler
+Number of features: 5
+Rationale: Quaternion components are mathematically bounded (~1 for unit quaternion). StandardScaler normalizes variations.
+
+Features in this group:
+  quaternion_magnitude                     | Original: μ=    1.0000, σ=    0.0000 | Scaled: μ= -0.0000, σ=  1.0000
+  imu-data_orientation.x                   | Original: μ=    0.0005, σ=    0.0077 | Scaled: μ=  0.0000, σ=  1.0000
+  imu-data_orientation.y                   | Original: μ=   -0.0106, σ=    0.0384 | Scaled: μ= -0.0000, σ=  1.0000
+  imu-data_orientation.z                   | Original: μ=   -0.5500, σ=    0.1244 | Scaled: μ=  0.0000, σ=  1.0000
+  imu-data_orientation.w                   | Original: μ=   -0.2832, σ=    0.1417 | Scaled: μ=  0.0000, σ=  1.0000
+
+GROUP: BOUNDED_FEATURES
+----------------------------------------------------------------------------------------------------------------------------------
+Scaler: MinMaxScaler
+Number of features: 3
+Rationale: Position and ratio features have implicit bounds. MinMaxScaler preserves interpretability [0,1].
+
+Features in this group:
+  throttle_altitude_ratio                  | Original: μ=    2.6169, σ=    1.7965 | Scaled: μ=  0.1108, σ=  0.1335
+  setpoint_raw-global_latitude             | Original: μ=   33.6370, σ=    0.0002 | Scaled: μ=  0.6482, σ=  0.3433
+  setpoint_raw-global_longitude            | Original: μ=   72.9913, σ=    0.0001 | Scaled: μ=  0.4852, σ=  0.2189
+
+==================================================================================================================================
+WHY MULTIPLE SCALERS?
+==================================================================================================================================
+
+Different feature groups have different properties requiring different normalization:
+
+✓ Motion Metrics (StandardScaler):
+  - Approximately normally distributed from physics of motion
+  - No natural bounds (can be arbitrarily large during maneuvers)
+  - Used by: Neural networks, SVM, K-means clustering
+  - Benefits: Centers data, standardizes variance, improves convergence
+
+✓ Battery/Control Signals (RobustScaler):
+  - Have outliers due to system faults, anomalies, DoS attacks
+  - Using mean/std (StandardScaler) would be influenced by outliers
+  - RobustScaler uses median/IQR which are robust to extremes
+  - Benefits: Preserves anomalous signal patterns critical for fault detection
+
+✓ Bounded Features (MinMaxScaler):
+  - Have implicit or explicit bounds (coordinates, percentages, ratios)
+  - MinMaxScaler preserves interpretability: [min, max] -> [0, 1]
+  - Benefits: Easy to interpret, suitable for gradient descent, maintains relationships
+
+==================================================================================================================================
+IMPACT ON MACHINE LEARNING MODELS:
+==================================================================================================================================
+
+Model Type              | Impact of Scaling
+--------------------------------------------------------------------------------
+Deep Learning (LSTM,    | HIGH - Weight initialization assumes normalized input
+CNN, FNN)               | StandardScaler helps convergence, reduces internal covariate shift
+
+SVM (RBF/Poly kernels)  | HIGH - Distance metrics sensitive to feature scale
+                        | StandardScaler critical; RobustScaler preserves anomalies
+
+XGBoost                 | MEDIUM - Tree-based, scale-invariant but improves training
+                        | Scaling helps with optimization and interpretability
+
+Tree Models             | LOW - Inherently scale-invariant (tree splits on values)
+                        | Scaling not required but helps for comparison
+
+KNN / Distance-based     | HIGH - Euclidean distance scales with feature magnitude
+                        | Scaling essential to prevent large-scale features dominating
+
+==================================================================================================================================
+POST-SCALING VALIDATION:
+==================================================================================================================================
+
+✓ No data loss: All 35,215 rows preserved
+✓ No feature removal: All 5 feature groups scaled
+✓ Class distribution: Unchanged (used for stratification later)
+✓ Temporal order: Preserved in sample_index column (not scaled)
+✓ Missing values: Filled with feature mean before scaling
+
+==================================================================================================================================
+NEXT STEP (1.6):
+==================================================================================================================================
+
+Correlation Analysis will:
+  1. Compute feature correlations on scaled data
+  2. Identify highly correlated feature pairs (>0.95)
+  3. Recommend redundant features for removal
+  4. Visualize correlation heatmap for domain interpretation
+
+==================================================================================================================================
